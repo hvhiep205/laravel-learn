@@ -4,43 +4,44 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SignupRequest extends FormRequest
+class signupRequest extends FormRequest
 {
     /**
-     * Xác định xem người dùng có được phép thực hiện yêu cầu này hay không.
+     * Determine if the user is authorized to make this request.
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return true;
+        return true; // true: cho phép request (hien thi loi), false: không cho phép request (k hien thi loi)
     }
 
     /**
-     * Lấy các quy tắc xác thực áp dụng cho yêu cầu.
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
+            // xet cac rang buoc
             'name' => 'required|max:255|string',
             'age' => 'numeric',
             'date' => 'string',
             'phone' => 'numeric',
             'web' => 'string',
-            'address' => 'string',
+            'address' => 'string'
         ];
     }
 
-    /**
-     * Lấy thông báo lỗi cho các quy tắc xác thực được định nghĩa.
-     */
     public function messages()
     {
         return [
-            'name.string' => 'Vui lòng điền tên cho đúng.',
-            'age.numeric' => 'Vui lòng nhập tuổi cho đúng.',
-            'date.string' => 'Vui lòng điền lại ngày tháng.',
-            'phone.numeric' => 'Vui lòng kiểm tra lại số điện thoại.',
-            'web.string' => 'Vui lòng nhập kiểm tra lại kí tự.',
-            'address.string' => 'Vui lòng nhập lại địa chỉ.',
-        ];
+            // xet cac loi
+            'name.string' => 'Vui long dien ten cho noi dung',
+            'age.numberic' => 'Vui long nhap tuoi cho noi dung',
+            'date.string' => 'Vui long nhap ngay thang cho noi dung',
+            'phone.numberic' => 'Vui long nhap so dien thoai cho noi dung',
+            'web.string' => 'Vui long nhap kiem tra lai ky tu cho noi dung',
+            'address.string' => 'Vui long nhap lai dia chi'
+        ];       
     }
 }
