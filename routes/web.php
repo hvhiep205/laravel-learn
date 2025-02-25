@@ -2,8 +2,12 @@
 use App\Http\Controllers\SignupController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CovidController;
-
+use App\Http\Controllers\TestFormController;
 // Định nghĩa route cho cả GET và POST
+use App\Http\Controllers\ProductController;		
+Route::resource('products', ProductController::class);						
+Route::get('/covid', [CovidController::class, 'getData']);
+Route::get('/form', [TestFormController::class, 'showForm']);
 Route::get('/signup', [signupController::class, 'index']); 
 Route::post('/signup', [signupController::class, 'displayInfor']);
 Route::get('/covid', [CovidController::class, 'getData']);
